@@ -1,0 +1,32 @@
+{
+  "name": "micro-front-cli",
+  "version": "1.0.0",
+  "description": "A tools for build micro-front.",
+  "main": "index.js",
+  "bin": {
+    "mfc": "bin/mfc"
+  },
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a1029563229/micro-front-cli.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/a1029563229/micro-front-cli/issues"
+  },
+  "homepage": "https://github.com/a1029563229/micro-front-cli#readme",
+  "dependencies": {
+    "boxen": "^4.2.0",
+    "commander": "^5.1.0",
+    "debug": "^4.1.1",
+    "download-git-repo": "^3.0.2",
+    "inquirer": "^7.1.0",
+    "lru-cache": "^5.1.1",
+    "shelljs": "^0.8.4",
+    "slash": "^3.0.0"
+  }
+}
