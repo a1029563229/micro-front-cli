@@ -45,7 +45,7 @@ const create = async (app) => {
   const options = await generate();
   const spinner = ora("正在下载模板...");
   spinner.start();
-  // if (options.isDefault) await downloadQsTemplate(app);
+  if (options.isDefault) await downloadQsTemplate(app);
 
   spinner.succeed();
 
