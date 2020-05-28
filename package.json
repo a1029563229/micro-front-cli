@@ -21,12 +21,24 @@
   "homepage": "https://github.com/a1029563229/micro-front-cli#readme",
   "dependencies": {
     "boxen": "^4.2.0",
+    "chalk": "^4.0.0",
     "commander": "^5.1.0",
     "debug": "^4.1.1",
     "download-git-repo": "^3.0.2",
     "inquirer": "^7.1.0",
     "lru-cache": "^5.1.1",
+    "ora": "^4.0.4",
     "shelljs": "^0.8.4",
     "slash": "^3.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.17.2"
+  },
+  "_moduleAliases": {
+    "@": ""
   }
 }
