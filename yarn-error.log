@@ -1,0 +1,73 @@
+Arguments: 
+  /Users/Macxdouble/.nvm/versions/node/v10.16.3/bin/node /Users/Macxdouble/.nvm/versions/node/v10.16.3/bin/yarn
+
+PATH: 
+  /Users/Macxdouble/.nvm/versions/node/v10.16.3/bin:/Library/Frameworks/Python.framework/Versions/3.7/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Applications/Wireshark.app/Contents/MacOS:/Users/Macxdouble/.nvm/versions/node/v10.16.3/bin:/Library/Frameworks/Python.framework/Versions/3.7/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:/Library/Frameworks/Mono.framework/Versions/5.10.1/bin:/Users/Macxdouble/project/excerpt/go/bin:/Users/Macxdouble/bin:/Library/Frameworks/Mono.framework/Versions/5.10.1/bin:/Users/Macxdouble/project/excerpt/go/bin:/Users/Macxdouble/bin
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  10.16.3
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: EACCES: permission denied, mkdir '/Users/Macxdouble/project/openSource/micro-front-cli/node_modules/eslint/node_modules/doctrine'
+
+npm manifest: 
+  {
+    "name": "micro-front-cli",
+    "version": "1.0.0",
+    "description": "A tools for build micro-front.",
+    "main": "index.js",
+    "bin": {
+      "mfc": "./bin/mfc"
+    },
+    "scripts": {
+      "dev": "nodemon --exec ts-node src/index.ts --project tsconfig.json",
+      "start": "node src/index.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/a1029563229/micro-front-cli.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/a1029563229/micro-front-cli/issues"
+    },
+    "homepage": "https://github.com/a1029563229/micro-front-cli#readme",
+    "dependencies": {
+      "boxen": "^4.2.0",
+      "chalk": "^4.0.0",
+      "commander": "^5.1.0",
+      "debug": "^4.1.1",
+      "download-git-repo": "^3.0.2",
+      "inquirer": "^7.1.0",
+      "lru-cache": "^5.1.1",
+      "ora": "^4.0.4",
+      "shelljs": "^0.8.4",
+      "slash": "^3.0.0"
+    },
+    "devDependencies": {
+      "babel-eslint": "^10.0.1",
+      "eslint": "^5.16.0",
+      "eslint-config-airbnb": "^17.1.0",
+      "eslint-plugin-babel": "^5.3.0",
+      "eslint-plugin-import": "^2.17.2",
+      "@types/node": "^8.10.61",
+      "ts-node": "3.3.0",
+      "typescript": "2.5.2"
+    },
+    "_moduleAliases": {
+      "@": ""
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

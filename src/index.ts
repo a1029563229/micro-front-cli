@@ -7,7 +7,7 @@ program
   .version(pkg.version, "-v, --version")
   .command("create <app-name>")
   .description("create a new project powered by micro-front-cli")
-  .action((appName) => {
+  .action((appName: string) => {
     create(appName);
   });
 
