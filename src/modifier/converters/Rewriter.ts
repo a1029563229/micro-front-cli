@@ -67,11 +67,20 @@ export default class Rewriter {
         // 重写文件
         const template = Handlebars.compile(data);
         const overrideData = template(this.templateData);
-        fs.writeFile(overrideFile, overrideData, "utf-8", (err) => {
-          if (err) return reject(err);
+        if (overrideData) {
+          fs.writeFile(overrideFile, overrideData, "utf-8", (err) => {
+            if (err) return reject(err);
 
-          resolve();
-        });
+            resolve();
+          });
+        } else {
+          // 文件为空则删除对应文件
+          fs.unlink(overrideFile, (err) => {
+            if (err) return reject(err);
+
+            resolve();
+          });
+        }
       });
     });
   }

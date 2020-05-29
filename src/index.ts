@@ -19,7 +19,7 @@ program
 
     const appPath = path.resolve(__dirname, "../templates/micro-app-react");
     const reactConverter = new ReactConverter(appPath);
-    reactConverter.setRewriter(new Rewriter({ isMain: false }));
+    reactConverter.setRewriter(new Rewriter({ isMain: true }));
     reactConverter.buildMainApp();
   });
 
