@@ -1,7 +1,7 @@
 import path from "path";
 import handlebars from "handlebars";
 
-import { detectExist } from "@/src/utils";
+import { detectExist } from "@/utils";
 
 export default class Overrides {
   private dir: string = "";
