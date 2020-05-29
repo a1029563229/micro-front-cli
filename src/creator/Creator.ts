@@ -17,6 +17,9 @@ export default class Creator {
     this.detectAppDirExists();
   }
 
+  /**
+   * 创建项目
+   */
   public async create() {
     const options = await generateTemplate();
 

@@ -1,6 +1,6 @@
 import { Converter } from "./converters";
 
-export default class Edit {
+export default class Modifier {
   mainConvert!: Converter;
   microConverters: Converter[] = [];
 
