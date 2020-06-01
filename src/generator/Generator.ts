@@ -1,5 +1,28 @@
 import inquirer from "inquirer";
+import { MicroApp } from "@/constants";
 
+const stacks = [
+  {
+    name: "Vue2",
+    value: MicroApp.VUE_APP,
+  },
+  {
+    name: "React16",
+    value: MicroApp.REACT_APP,
+  },
+  {
+    name: "Angular9",
+    value: MicroApp.ANGULAR_APP,
+  },
+  {
+    name: "ES6",
+    value: MicroApp.ES6_APP,
+  },
+  {
+    name: "Static",
+    value: MicroApp.STATIC_APP,
+  },
+];
 export default class Generator {
   /**
    * 选择预设
@@ -31,7 +54,7 @@ export default class Generator {
       name: "mainApp",
       type: "list",
       message: "Please choose the MainApp stack",
-      choices: ["Vue2", "React16", "Angular9", "ES6", "Static"],
+      choices: stacks,
     });
     return options.mainApp;
   }
@@ -44,7 +67,7 @@ export default class Generator {
       name: "microApps",
       type: "checkbox",
       message: "Please Check the microApps that you need:",
-      choices: ["Vue2", "React16", "Angular9", "ES6", "Static"],
+      choices: stacks,
     });
     return options.microApps;
   }

@@ -3,13 +3,14 @@ import fs, { stat, writeFile } from "fs";
 import Handlebars from "handlebars";
 
 import { detectExist } from "@/utils";
+import TemplateData from "../TemplateData";
 
 export default class Rewriter {
   private dir: string = "";
   private rewriteFilesPath: string = "";
-  private templateData: any = {};
+  private templateData!: TemplateData;
 
-  constructor(templateData: any) {
+  constructor(templateData: TemplateData) {
     this.templateData = templateData;
   }
 
@@ -75,11 +76,12 @@ export default class Rewriter {
           });
         } else {
           // 文件为空则删除对应文件
-          fs.unlink(overrideFile, (err) => {
-            if (err) return reject(err);
+          detectExist(overrideFile) &&
+            fs.unlink(overrideFile, (err) => {
+              if (err) return reject(err);
 
-            resolve();
-          });
+              resolve();
+            });
         }
       });
     });
