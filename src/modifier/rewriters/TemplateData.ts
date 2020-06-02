@@ -7,7 +7,7 @@ type MicroAppItem = {
   activeRule: string;
 };
 
-const microConfigs: { [key: number]: MicroAppItem } = {
+const microConfigs: { [key: string]: MicroAppItem } = {
   [MicroApp.STATIC_APP]: {
     name: "MicroStaticApp",
     entry: "//localhost:10400",

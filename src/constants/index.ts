@@ -2,9 +2,9 @@
  * 微应用类型
  */
 export enum MicroApp {
-  STATIC_APP = 0,
-  VUE_APP,
-  REACT_APP,
-  ANGULAR_APP,
-  ES6_APP
+  STATIC_APP = "static",
+  VUE_APP = "vue",
+  REACT_APP = "react",
+  ANGULAR_APP = "angular",
+  ES6_APP = "es6",
 }

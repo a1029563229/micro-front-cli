@@ -1,16 +1,16 @@
 import path from "path";
 import fs, { stat, writeFile } from "fs";
 import Handlebars from "handlebars";
+import shell from "shelljs";
 
 import { detectExist } from "@/utils";
-import TemplateData from "../TemplateData";
 
 export default class Rewriter {
   private dir: string = "";
   private rewriteFilesPath: string = "";
-  private templateData!: TemplateData;
+  private templateData!: any;
 
-  constructor(templateData: TemplateData) {
+  constructor(templateData: any) {
     this.templateData = templateData;
   }
 
@@ -38,6 +38,7 @@ export default class Rewriter {
     }
 
     await Promise.all(rewriteFns);
+    shell.rm("-rf", this.rewriteFilesPath);
   }
 
   private readFiles(entry: string): string[] {

@@ -1,6 +1,6 @@
 import path from "path";
 import Converter from "./Converter";
-import Rewriter from "./Rewriter";
+import Rewriter from "../rewriters/Rewriter";
 
 export default class ReactConverter extends Converter {
   private appPath: string = "";

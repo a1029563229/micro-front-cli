@@ -7,8 +7,8 @@ const { program } = commander;
 import pkg from "../package.json";
 import Creator from "./creator";
 import Modifier from "./modifier";
-import { ReactConverter, Rewriter } from "./modifier/converters";
-import TemplateData from "./modifier/TemplateData";
+import { ReactConverter, Rewriter } from "./modifier";
+import TemplateData from "./modifier/rewriters/TemplateData";
 
 program
   .version(pkg.version, "-v, --version")

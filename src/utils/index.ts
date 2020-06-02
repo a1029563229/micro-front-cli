@@ -6,3 +6,18 @@ import shell from "shelljs";
 export const detectExist = (path: string): boolean => {
   return shell.test("-e", path);
 };
+
+let workDir = __dirname;
+/**
+ * 设置当前工作路径
+ */
+export const setWorkDir = (path: string): void => {
+  workDir = path;
+};
+
+/**
+ * 获取当前工作路径
+ */
+export const getWorkDir = (): string => {
+  return workDir;
+};

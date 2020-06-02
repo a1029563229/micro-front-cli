@@ -1,9 +1,13 @@
 import Converter from "./Converter";
+import StaticConverter from "./StaticConverter";
+import VueConverter from "./VueConverter";
 import ReactConverter from "./ReactConverter";
-import Rewriter from "./Rewriter";
+import AngularConverter from "./AngularConverter";
 
 export {
   Converter,
+  StaticConverter,
+  VueConverter,
   ReactConverter,
-  Rewriter
-}
+  AngularConverter,
+};
