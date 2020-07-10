@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es2018",
     "module": "commonjs",
     "strict": true,
     "importHelpers": true,
@@ -15,7 +15,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "lib": ["esnext"]
+    "lib": ["es2018"]
   },
   "exclude": ["node_modules"]
 }

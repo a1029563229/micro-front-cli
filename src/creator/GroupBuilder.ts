@@ -30,6 +30,7 @@ export default class GroupBuilder {
   public async rewrite(microApps: MicroApp[]): Promise<any> {
     const rewriter = new Rewriter({ apps: microApps });
     await rewriter.rewriteDir(path.join(getWorkDir(), this.appName));
+    rewriter.deleteOverrides();
     return Promise.resolve();
   }
 }

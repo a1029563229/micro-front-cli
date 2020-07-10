@@ -45,12 +45,11 @@ export default class Creator {
       shell.cd(appName);
       setWorkDir(slash(shell.pwd()));
 
-      // const builder = new Builder(options.mainApp!, options.microApps!);
-      // builder.build();
+      const builder = new Builder(options.mainApp!, options.microApps!);
+      builder.build();
     }
     spinner.succeed();
 
-    console.log(options);
     this.echoSuccessMsg();
   }
 

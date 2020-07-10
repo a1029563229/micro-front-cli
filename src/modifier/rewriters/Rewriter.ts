@@ -5,6 +5,10 @@ import shell from "shelljs";
 
 import { detectExist } from "@/utils";
 
+Handlebars.registerHelper("raw", function (options) {
+  return options.fn();
+});
+
 export default class Rewriter {
   private dir: string = "";
   private rewriteFilesPath: string = "";
@@ -36,8 +40,13 @@ export default class Rewriter {
       const file = files[i];
       rewriteFns.push(this.geRewriteFileFn(file));
     }
-
     await Promise.all(rewriteFns);
+  }
+
+  /**
+   * 删除 overrides 文件夹
+   */
+  public deleteOverrides() {
     shell.rm("-rf", this.rewriteFilesPath);
   }
 
@@ -62,10 +71,8 @@ export default class Rewriter {
     return new Promise((resolve, reject) => {
       const templateFile = path.join(this.rewriteFilesPath, file);
       const overrideFile = path.join(this.dir, file.slice(0, file.length - 3)); // 截取尾缀
-
       fs.readFile(templateFile, "utf-8", (err, data) => {
         if (err) return reject(err);
-
         // 重写文件
         const template = Handlebars.compile(data);
         const overrideData = template(this.templateData);
@@ -77,12 +84,13 @@ export default class Rewriter {
           });
         } else {
           // 文件为空则删除对应文件
-          detectExist(overrideFile) &&
-            fs.unlink(overrideFile, (err) => {
-              if (err) return reject(err);
+          if (!detectExist(overrideFile)) return resolve();
 
-              resolve();
-            });
+          fs.unlink(overrideFile, (err) => {
+            if (err) return reject(err);
+
+            resolve();
+          });
         }
       });
     });

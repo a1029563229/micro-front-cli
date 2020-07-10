@@ -7,7 +7,9 @@
     "mfc": "./bin/mfc"
   },
   "scripts": {
-    "test": "ts-jest",
+    "test": "jest",
+    "test:build-react": "proxychains4 jest ./src/__tests__/index.react.test.ts",
+    "test:rewriter-react": "jest ./src/modifier/__tests__/rewriter.react.test.ts",
     "dev": "nodemon --exec ts-node src/index.ts",
     "start": "ts-node src/index.ts"
   },
@@ -37,21 +39,30 @@
     "slash": "^3.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
     "@types/inquirer": "^6.5.0",
-    "@types/jest": "^25.2.3",
     "@types/node": "^14.0.5",
     "@types/shelljs": "^0.8.8",
     "babel-eslint": "^10.0.1",
+    "@types/jest": "^25.2.3",
+    "babel-jest": "^26.0.1",
+    "jest": "^26.0.1",
+    "ts-jest": "^26.1.0",
+    "babel-plugin-module-resolver": "^4.0.0",
     "eslint": "^6.6.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-babel": "^5.3.0",
     "eslint-plugin-import": "^2.17.2",
-    "jest": "^26.0.1",
-    "ts-jest": "^26.1.0",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.3"
   },
   "_moduleAliases": {
     "@": "src/"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^@/(.*)": "<rootDir>/src/$1"
+    }
   }
 }

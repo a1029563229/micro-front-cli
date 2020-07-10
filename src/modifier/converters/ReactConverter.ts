@@ -14,6 +14,9 @@ export default class ReactConverter extends Converter {
     this.rewriterPath = path.join(appPath, "./overrides");
   }
 
+  /**
+   * 设置重写对象
+   */
   public setRewriter(rewriter: Rewriter) {
     this.rewriter = rewriter;
   }
@@ -21,14 +24,22 @@ export default class ReactConverter extends Converter {
   /**
    * 构建主应用代码
    */
-  public buildMainApp() {
-    this.rewriter.rewriteDir(this.appPath, this.rewriterPath);
+  public buildMainApp(): Promise<any> {
+    return new Promise(async (resolve) => {
+      await this.rewriter.rewriteDir(this.appPath, this.rewriterPath);
+      this.rewriter.deleteOverrides();
+      resolve();
+    });
   }
 
   /**
    * 构建微应用代码
    */
-  public buildMicroApp() {
-    this.rewriter.rewriteDir(this.appPath, this.rewriterPath);
+  public buildMicroApp(): Promise<any> {
+    return new Promise(async (resolve) => {
+      await this.rewriter.rewriteDir(this.appPath, this.rewriterPath);
+      this.rewriter.deleteOverrides();
+      resolve();
+    });
   }
 }

@@ -6,11 +6,9 @@ import TemplateData from "@/modifier/rewriters/TemplateData";
 import {
   Converter,
   ReactConverter,
-  StaticConverter,
-  VueConverter,
-  AngularConverter,
 } from "@/modifier/converters";
-import Downloader from "@/downloader/Downloader";
+import downloader from "@/downloader";
+import { Rewriter } from "@/modifier";
 
 type AppItem = {
   name: string;
@@ -24,12 +22,12 @@ const microConfigs: { [key: string]: AppItem } = {
   [MicroApp.STATIC_APP]: {
     name: "micro-app-static",
     repository: "git@github.com:a1029563229/micro-app-react-template.git",
-    ConverterConstructor: StaticConverter,
+    ConverterConstructor: ReactConverter,
   },
   [MicroApp.VUE_APP]: {
     name: "micro-app-vue",
     repository: "git@github.com:a1029563229/micro-app-vue-template.git",
-    ConverterConstructor: VueConverter,
+    ConverterConstructor: ReactConverter,
   },
   [MicroApp.REACT_APP]: {
     name: "micro-app-react",
@@ -39,7 +37,7 @@ const microConfigs: { [key: string]: AppItem } = {
   [MicroApp.ANGULAR_APP]: {
     name: "micro-app-angular",
     repository: "git@github.com:a1029563229/micro-app-angular-template.git",
-    ConverterConstructor: AngularConverter,
+    ConverterConstructor: ReactConverter,
   },
 };
 
@@ -54,7 +52,6 @@ export default class Builder {
     this.mainApp = mainApp;
     this.microApps = microApps;
     this.init();
-    console.log(this.apps);
   }
 
   private init() {
@@ -79,12 +76,38 @@ export default class Builder {
 
   // private getDownloadFn(app: MicroApp): DownloadFn {}
 
-  public build() {
-    // this.downloadApps();
-    // const { appPath } = this;
-    // const reactConverter = new ReactConverter(appPath);
-    // const templateData = new TemplateData(true);
-    // reactConverter.setRewriter(new Rewriter(templateData));
-    // reactConverter.buildMainApp();
+  /**
+   * 构建主应用和所有微应用
+   */
+  public async build(): Promise<any> {
+    await this.downloadApps();
+
+    const apps = this.apps;
+    const buildFns: Promise<any>[] = [];
+    for (let i = 0; i < apps.length; i++) {
+      const app = apps[i];
+      const { appPath, isMain, ConverterConstructor } = app;
+      const converter: Converter = new ConverterConstructor(appPath!);
+      const templateData = new TemplateData(isMain);
+      converter.setRewriter(new Rewriter(templateData));
+      if (isMain) {
+        buildFns.push(converter.buildMainApp());
+      } else {
+        buildFns.push(converter.buildMicroApp());
+      }
+    }
+    await Promise.all(buildFns);
+    
+    return Promise.resolve();
+  }
+
+  private async downloadApps(): Promise<any> {
+    const apps = this.apps;
+    await Promise.all(
+      apps.map((app) =>
+        downloader.downloadAppTemplate(app.repository, app.name)
+      )
+    );
+    return Promise.resolve();
   }
 }
